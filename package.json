@@ -25,7 +25,7 @@
     "build": "tsc",
     "watch": "tsc --watch"
   },
-  "author": "Erik Lopez",
+  "author": "Erik Lopez - maintained by Simon Baars",
   "license": "MIT",
   "devDependencies": {
     "@emotion/react": "^11.4.1",
@@ -42,8 +42,6 @@
     "eslint": "^7.32.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "typescript": "^4.4.3",
-    "ts-loader": "^9.2.6",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1",
