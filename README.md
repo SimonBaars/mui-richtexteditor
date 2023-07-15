@@ -1,4 +1,6 @@
-# mui-rte  
+# mui-rte
+
+The MUI rte library was unmaintained, so I created a new JS based version :)
 
 The Material-UI Rich Text Editor and Viewer
 

@@ -18,16 +18,11 @@ module.exports = {
     devtool: "inline-source-map",
 
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [".js", ".json"]
     },
 
     module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                loader: "ts-loader"
-            }
-        ]
+        rules: []
     },
 
     optimization: {
