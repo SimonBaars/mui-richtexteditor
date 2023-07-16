@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import * as ReactDOM from 'react-dom'
-import Events from './events'
-import Themed from './theme'
-import Basic from './basic'
-import RefSave from './ref-save'
-import ReadOnly from './read-only'
-import CustomControls from './custom-controls'
-import Decorators from './decorator'
-import InlineToolbar from './inline-toolbar'
-import CustomInlineToolbar from './custom-inline-toolbar'
-import LoadHTML from './load-html'
-import ResetValue from './reset-value'
-import AtomicCustomBlock from './atomic-custom-block'
-import KeyBindings from './key-bindings'
-import MaxLength from './max-length'
-import Autocomplete from './autocomplete'
-import AutocompleteAtomic from './autocomplete-atomic'
-import AsyncImageUpload from './async-image-upload'
-import AsyncAtomicCustomBlock from './async-atomic-custom-block'
-import { createTheme, Theme, ThemeProvider } from '@mui/material/styles'
+import React, { useState, useEffect } from 'react';
+import * as ReactDOM from 'react-dom';
+import Events from './events';
+import Themed from './theme';
+import Basic from './basic';
+import RefSave from './ref-save';
+import ReadOnly from './read-only';
+import CustomControls from './custom-controls';
+import Decorators from './decorator';
+import InlineToolbar from './inline-toolbar';
+import CustomInlineToolbar from './custom-inline-toolbar';
+import LoadHTML from './load-html';
+import ResetValue from './reset-value';
+import AtomicCustomBlock from './atomic-custom-block';
+import KeyBindings from './key-bindings';
+import MaxLength from './max-length';
+import Autocomplete from './autocomplete';
+import AutocompleteAtomic from './autocomplete-atomic';
+import AsyncImageUpload from './async-image-upload';
+import AsyncAtomicCustomBlock from './async-atomic-custom-block';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
 
-const defaultTheme: Theme = createTheme({})
+const defaultTheme = createTheme({});
 
 const App = () => {
 
-    const [sample, setSample] = useState(<Basic />)
+    const [sample, setSample] = useState(<Basic />);
 
     useEffect(() => {
-        console.log(`Loaded ${sample.type.name} example`)
-    })
+        console.log(`Loaded ${sample.type.name} example`);
+    });
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -62,7 +62,7 @@ const App = () => {
                 </div>
             </div>
         </ThemeProvider>
-    )
-}
+    );
+};
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById("root"));

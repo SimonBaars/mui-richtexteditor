@@ -1,38 +1,18 @@
-import React, { useRef, useState, FunctionComponent, useEffect } from 'react'
-import MUIRichTextEditor, { TMUIRichTextEditorRef } from '../..'
+import React, { useRef, useState, useEffect } from 'react';
+import MUIRichTextEditor, { TMUIRichTextEditorRef } from '../..';
 import {
     Card, CardHeader, Avatar, CardMedia, CardContent,
     Typography, IconButton, CardActions, Grid
-} from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import Popover from '@mui/material/Popover'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import WebAssetIcon from '@mui/icons-material/WebAsset'
-import ShareIcon from '@mui/icons-material/Share'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import DoneIcon from '@mui/icons-material/Done'
-import CloseIcon from '@mui/icons-material/Close'
-
-type TMyCardData = {
-    title?: string
-    name?: string
-    date?: Date
-    text?: string
-    image?: string
-}
-
-type TAnchor = HTMLElement | null
-
-interface IMyCardPopoverProps {
-    anchor: TAnchor
-    onSubmit: (data: TMyCardData, insert: boolean) => void
-}
-
-type TMyCardPopoverState = {
-    anchor: TAnchor
-    isCancelled: boolean
-}
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import Popover from '@mui/material/Popover';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import WebAssetIcon from '@mui/icons-material/WebAsset';
+import ShareIcon from '@mui/icons-material/Share';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 
 const cardPopverStyles = makeStyles({
     root: {
@@ -42,7 +22,7 @@ const cardPopverStyles = makeStyles({
     textField: {
         width: "100%"
     }
-})
+});
 
 const cardStyles = makeStyles({
     root: {
@@ -55,23 +35,23 @@ const cardStyles = makeStyles({
     avatar: {
         backgroundColor: "tomato"
     }
-})
+});
 
-const save = (data: string) => {
-    console.log(data)
-}
+const save = (data) => {
+    console.log(data);
+};
 
-const MyCard: FunctionComponent<any> = (props) => {
-    const { blockProps } = props
-    const classes = cardStyles(props)
+const MyCard = (props) => {
+    const { blockProps } = props;
+    const classes = cardStyles(props);
 
     const handleLiked = () => {
-        alert("Favorited")
-    }
+        alert("Favorited");
+    };
 
     const handleShared = () => {
-        alert("Shared")
-    }
+        alert("Shared");
+    };
 
     return (
         <Card className={classes.root}>
@@ -108,33 +88,33 @@ const MyCard: FunctionComponent<any> = (props) => {
                 </IconButton>
             </CardActions>
         </Card>
-    )
-}
+    );
+};
 
-const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = (props) => {
-    const classes = cardPopverStyles(props)
-    const [state, setState] = useState<TMyCardPopoverState>({
+const MyCardPopover = (props) => {
+    const classes = cardPopverStyles(props);
+    const [state, setState] = useState({
         anchor: null,
         isCancelled: false
-    })
-    const [data, setData] = useState<TMyCardData>({})
+    });
+    const [data, setData] = useState({});
 
     useEffect(() => {
         setState({
             anchor: props.anchor,
             isCancelled: false
-        })
+        });
         setData({
             date: new Date()
-        })
-    }, [props.anchor])
+        });
+    }, [props.anchor]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event) => {
         setData({
             ...data,
             [event.target.name]: event.target.value
-        })
-    }
+        });
+    };
 
     const textFieldProps = {
         className: classes.textField,
@@ -142,7 +122,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = (props) => {
         InputLabelProps: {
             shrink: true
         }
-    }
+    };
 
     return (
         <Popover
@@ -192,7 +172,7 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = (props) => {
                         setState({
                             anchor: null,
                             isCancelled: true
-                        })
+                        });
                     }}
                     >
                         <CloseIcon />
@@ -201,8 +181,8 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = (props) => {
                         setState({
                             anchor: null,
                             isCancelled: false
-                        })
-                        props.onSubmit(data, !state.isCancelled)
+                        });
+                        props.onSubmit(data, !state.isCancelled);
                     }}
                     >
                         <DoneIcon />
@@ -210,22 +190,22 @@ const MyCardPopover: FunctionComponent<IMyCardPopoverProps> = (props) => {
                 </Grid>
             </Grid>
         </Popover>
-    )
-}
+    );
+};
 
-const AtomicCustomBlock: FunctionComponent = () => {
+const AtomicCustomBlock = () => {
 
-    const ref = useRef<TMUIRichTextEditorRef>(null)
-    const [anchor, setAnchor] = useState<HTMLElement | null>(null)
+    const ref = useRef(null);
+    const [anchor, setAnchor] = useState(null);
     return (
         <>
             <MyCardPopover
                 anchor={anchor}
                 onSubmit={(data, insert) => {
                     if (insert) {
-                        ref.current?.insertAtomicBlockSync("my-card", data)
+                        ref.current?.insertAtomicBlockSync("my-card", data);
                     }
-                    setAnchor(null)
+                    setAnchor(null);
                 }}
             />
             <MUIRichTextEditor
@@ -244,13 +224,13 @@ const AtomicCustomBlock: FunctionComponent = () => {
                         icon: <WebAssetIcon />,
                         type: "callback",
                         onClick: (_editorState, _name, anchor) => {
-                            setAnchor(anchor)
+                            setAnchor(anchor);
                         }
                     }
                 ]}
             />
         </>
-    )
-}
+    );
+};
 
-export default AtomicCustomBlock
+export default AtomicCustomBlock;

@@ -1,19 +1,19 @@
 import React, { FunctionComponent, useRef } from 'react'
 import MUIRichTextEditor, { TMUIRichTextEditorRef } from '../../'
 
-const RefSave: FunctionComponent = () => {
+const RefSave = () => {
 
     const ref = useRef<TMUIRichTextEditorRef>(null)
 
     const handleClick = () => {
-        ref.current?.save()
+        ref.current.save()
     }
 
     const handleFocus = () => {
-        ref.current?.focus()
+        ref.current.focus()
     }
 
-    const handleSave = (data: string) => {
+    const handleSave = (data) => {
         console.log(data)
     }
 

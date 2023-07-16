@@ -1,14 +1,14 @@
-import React, { FunctionComponent } from 'react'
-import { Chip, Avatar, Button } from '@mui/material'
-import InvertColorsIcon from '@mui/icons-material/InvertColors'
-import MUIRichTextEditor, { TToolbarComponentProps } from '../../'
-import { EditorState } from 'draft-js'
+import React, { FunctionComponent } from 'react';
+import { Chip, Avatar, Button } from '@mui/material';
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
+import MUIRichTextEditor, { TToolbarComponentProps } from '../../';
+import { EditorState } from 'draft-js';
 
-const save = (data: string) => {
-    console.log(data)
-}
+const save = (data) => {
+    console.log(data);
+};
 
-const MyBlock = (props: any) => {
+const MyBlock = (props) => {
     return (
         <div style={{
             padding: 10,
@@ -17,10 +17,10 @@ const MyBlock = (props: any) => {
             My Block says:
             {props.children}
         </div>
-    )
-}
+    );
+};
 
-const MyCallbackComponent: FunctionComponent<TToolbarComponentProps> = (props) => {
+const MyCallbackComponent = (props) => {
     return (
         <Chip
             id={props.id}
@@ -29,10 +29,10 @@ const MyCallbackComponent: FunctionComponent<TToolbarComponentProps> = (props) =
             label="Callback"
             disabled={props.disabled}
         />
-    )
-}
+    );
+};
 
-const ClearComponent: FunctionComponent<TToolbarComponentProps> = (props) => {
+const ClearComponent = (props) => {
     return (
         <Chip
             id={props.id}
@@ -40,10 +40,10 @@ const ClearComponent: FunctionComponent<TToolbarComponentProps> = (props) => {
             label="Clear all"
             disabled={props.disabled}
         />
-    )
-}
+    );
+};
 
-const MyBlockComponent: FunctionComponent<TToolbarComponentProps> = (props) => {
+const MyBlockComponent = (props) => {
     return (
         <Button
             id={props.id}
@@ -54,8 +54,8 @@ const MyBlockComponent: FunctionComponent<TToolbarComponentProps> = (props) => {
         >
             My Block
         </Button>
-    )
-}
+    );
+};
 
 const CustomControls = () => {
     return (
@@ -84,7 +84,7 @@ const CustomControls = () => {
                     component: MyCallbackComponent,
                     type: "callback",
                     onClick: (_editorState, name, _anchor) => {
-                        console.log(`Clicked ${name} control`)
+                        console.log(`Clicked ${name} control`);
                     }
                 },
                 {
@@ -92,12 +92,12 @@ const CustomControls = () => {
                     component: ClearComponent,
                     type: "callback",
                     onClick: () => {
-                        return EditorState.createEmpty()
+                        return EditorState.createEmpty();
                     }
                 }
             ]}
         />
-    )
-}
+    );
+};
 
-export default CustomControls
+export default CustomControls;

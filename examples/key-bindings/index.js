@@ -2,7 +2,7 @@ import React from 'react'
 import { EditorState, RichUtils } from 'draft-js'
 import MUIRichTextEditor from '../../'
 
-const save = (data: string) => {
+const save = (data) => {
     console.log(data)
 }
 
@@ -23,7 +23,7 @@ const KeyBindings = () => {
                 {
                     key: 75, // K
                     name: "toggle-italic",
-                    callback: (editorState: EditorState) => {
+                    callback: (editorState) => {
                         const newState = RichUtils.toggleInlineStyle(editorState, "ITALIC")
                         return newState
                     }

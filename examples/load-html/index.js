@@ -7,7 +7,7 @@ const contentHTML = convertFromHTML(sampleMarkup)
 const state = ContentState.createFromBlockArray(contentHTML.contentBlocks, contentHTML.entityMap)
 const content = JSON.stringify(convertToRaw(state))
 
-const save = (data: string) => {
+const save = (data) => {
     console.log(data)
 }
 

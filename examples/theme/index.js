@@ -1,17 +1,17 @@
-import React from 'react'
-import { createTheme, Theme, ThemeProvider } from '@mui/material/styles'
-import MUIRichTextEditor from '../../'
-import { TMUIRichTextEditorStyles } from '../../'
+import React from 'react';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
+import MUIRichTextEditor from '../../';
+import { TMUIRichTextEditorStyles } from '../../';
 
-export const defaultTheme: Theme = createTheme({
+export const defaultTheme = createTheme({
     palette: {
         primary: {
             main: "#000000"
         }
     }
-})
+});
 
-const muiRteTheme: TMUIRichTextEditorStyles = {
+const muiRteTheme = {
     overrides: {
         MUIRichTextEditor: {
             root: {
@@ -43,13 +43,13 @@ const muiRteTheme: TMUIRichTextEditorStyles = {
             }
         }
     }
-}
+};
 
-Object.assign(defaultTheme, muiRteTheme)
+Object.assign(defaultTheme, muiRteTheme);
 
-const save = (data: string) => {
-    console.log(data)
-}
+const save = (data) => {
+    console.log(data);
+};
 
 const Themed = () => {
     return (
@@ -59,7 +59,7 @@ const Themed = () => {
                 onSave={save}
             />
         </ThemeProvider>
-    )
-}
+    );
+};
 
-export default Themed
+export default Themed;

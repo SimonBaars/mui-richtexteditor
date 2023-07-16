@@ -1,17 +1,18 @@
 import React from 'react'
 import MUIRichTextEditor from '../../'
 
-const save = (data: string) => {
+const save = (data) => {
     console.log(data)
 }
 
-const Basic = () => {
+const MaxLength = () => {
     return (
         <MUIRichTextEditor
-            label="Type something here..."
+            label="You can only type 10 characters..."
+            maxLength={10}
             onSave={save}
         />
     )
 }
 
-export default Basic
+export default MaxLength

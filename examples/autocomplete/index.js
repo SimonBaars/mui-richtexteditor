@@ -1,20 +1,14 @@
-import React, { FunctionComponent } from 'react'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemAvatar from '@mui/material/ListItemAvatar'
-import Avatar from '@mui/material/Avatar'
-import MUIRichTextEditor, { TAutocompleteItem } from '../../'
+import React from 'react';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import MUIRichTextEditor, { TAutocompleteItem } from '../../';
 
-const save = (data: string) => {
-    console.log(data)
-}
+const save = (data) => {
+    console.log(data);
+};
 
-type TStaff = {
-    job: string
-    name: string
-    color: string
-}
-
-const Staff: FunctionComponent<TStaff> = (props) => {
+const Staff = (props) => {
     return (
         <>
             <ListItemAvatar>
@@ -27,10 +21,10 @@ const Staff: FunctionComponent<TStaff> = (props) => {
                 secondary={props.job}
             />
         </>
-    )
-}
+    );
+};
 
-const emojis: TAutocompleteItem[] = [
+const emojis = [
     {
         keys: ["face", "grin"],
         value: "😀",
@@ -61,9 +55,9 @@ const emojis: TAutocompleteItem[] = [
         value: "😅",
         content: "😅",
     }
-]
+];
 
-const cities: TAutocompleteItem[] = [
+const cities = [
     {
         keys: ["mexico"],
         value: "Mexico City",
@@ -84,7 +78,7 @@ const cities: TAutocompleteItem[] = [
         value: "Osaka",
         content: "Osaka",
     }
-]
+];
 
 const staff = [
     {
@@ -102,7 +96,7 @@ const staff = [
         value: "Mui Rte",
         content: <Staff name="Mui Rte" job="Manager" color="dodgerblue" />,
     }
-]
+];
 
 const Autocomplete = () => {
     return (
@@ -127,7 +121,7 @@ const Autocomplete = () => {
                 ]
             }}
         />
-    )
-}
+    );
+};
 
-export default Autocomplete
+export default Autocomplete;

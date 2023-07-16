@@ -1,13 +1,13 @@
-import React, { FunctionComponent } from 'react'
-import Avatar from '@mui/material/Avatar'
-import Chip from '@mui/material/Chip'
-import MUIRichTextEditor, { TAutocompleteItem } from '../../'
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import MUIRichTextEditor, { TAutocompleteItem } from '../../';
 
-const save = (data: string) => {
-    console.log(data)
-}
+const save = (data) => {
+    console.log(data);
+};
 
-const cities: TAutocompleteItem[] = [
+const cities = [
     {
         keys: ["mexico"],
         value: {
@@ -40,15 +40,15 @@ const cities: TAutocompleteItem[] = [
         },
         content: "Osaka",
     }
-]
+];
 
-const CityChip: FunctionComponent<any> = (props) => {
-    const { blockProps } = props
-    const { value } = blockProps // Get the value provided in the TAutocompleteItem[]
+const CityChip = (props) => {
+    const { blockProps } = props;
+    const { value } = blockProps; // Get the value provided in the TAutocompleteItem[]
 
     const handleClick = () => {
-        console.log(value.name)
-    }
+        console.log(value.name);
+    };
 
     return (
         <Chip
@@ -56,8 +56,8 @@ const CityChip: FunctionComponent<any> = (props) => {
             label={value.name}
             onClick={handleClick}
         />
-    )
-}
+    );
+};
 
 const AutocompleteAtomic = () => {
     return (
@@ -81,7 +81,7 @@ const AutocompleteAtomic = () => {
                 ]
             }}
         />
-    )
-}
+    );
+};
 
-export default AutocompleteAtomic
+export default AutocompleteAtomic;

@@ -1,10 +1,10 @@
-import React from 'react'
-import MUIRichTextEditor from '../../'
-import InvertColorsIcon from '@mui/icons-material/InvertColors'
+import React from 'react';
+import MUIRichTextEditor from '../../';
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
 
-const save = (data: string) => {
-    console.log(data)
-}
+const save = (data) => {
+    console.log(data);
+};
 
 const CustomInlineToolbar = () => {
     return (
@@ -25,7 +25,7 @@ const CustomInlineToolbar = () => {
                 }
             ]}
         />
-    )
-}
+    );
+};
 
-export default CustomInlineToolbar
+export default CustomInlineToolbar;

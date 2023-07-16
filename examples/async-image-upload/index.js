@@ -1,31 +1,15 @@
-import React, { useRef, useState, FunctionComponent, useEffect } from 'react'
-import MUIRichTextEditor, { TMUIRichTextEditorRef, TAsyncAtomicBlockResponse } from '../..'
-import Grid from '@mui/material/Grid'
-import { makeStyles } from '@mui/styles'
-import Popover from '@mui/material/Popover'
-import TextField from '@mui/material/TextField'
-import IconButton from '@mui/material/IconButton'
-import Button from '@mui/material/Button'
-import BackupIcon from '@mui/icons-material/Backup'
-import DoneIcon from '@mui/icons-material/Done'
-import CloseIcon from '@mui/icons-material/Close'
-import AttachFileIcon from '@mui/icons-material/AttachFile'
-
-interface IUploadImagePopoverProps {
-    anchor: TAnchor
-    onSubmit: (data: TUploadImageData, insert: boolean) => void
-}
-
-type TUploadImagePopoverState = {
-    anchor: TAnchor
-    isCancelled: boolean
-}
-
-type TUploadImageData = {
-    file?: File
-}
-
-type TAnchor = HTMLElement | null
+import React, { useRef, useState, useEffect } from 'react';
+import MUIRichTextEditor, { TMUIRichTextEditorRef } from '../..';
+import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/styles';
+import Popover from '@mui/material/Popover';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import BackupIcon from '@mui/icons-material/Backup';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 const cardPopverStyles = makeStyles({
     root: {
@@ -38,54 +22,54 @@ const cardPopverStyles = makeStyles({
     input: {
         display: "none"
     }
-})
+});
 
-const uploadImageToServer = (file: File) => {
+const uploadImageToServer = (file) => {
     return new Promise(resolve => {
-        console.log(`Uploading image ${file.name} ...`)
+        console.log(`Uploading image ${file.name} ...`);
         setTimeout(() => {
-            console.log("Upload successful")
-            resolve(`https://return_uploaded_image_url/${file.name}`)
-        }, 2000)
-    })
-}
+            console.log("Upload successful");
+            resolve(`https://return_uploaded_image_url/${file.name}`);
+        }, 2000);
+    });
+};
 
-const uploadImage = (file: File) => {
-    return new Promise<TAsyncAtomicBlockResponse>(async (resolve, reject) => {
-        const url = await uploadImageToServer(file)
+const uploadImage = (file) => {
+    return new Promise(async (resolve, reject) => {
+        const url = await uploadImageToServer(file);
         if (!url) {
-            reject()
-            return
+            reject();
+            return;
         }
         resolve({
             data: {
                 url: url,
                 width: 300,
                 height: 200,
-                alignment: "left", // or "center", "right"
-                type: "image" // or "video"
+                alignment: "left",
+                type: "image"
             }
-        })
-    })
-}
+        });
+    });
+};
 
-const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = (props) => {
-    const classes = cardPopverStyles(props)
-    const [state, setState] = useState<TUploadImagePopoverState>({
+const UploadImagePopover = (props) => {
+    const classes = cardPopverStyles(props);
+    const [state, setState] = useState({
         anchor: null,
         isCancelled: false
-    })
-    const [data, setData] = useState<TUploadImageData>({})
+    });
+    const [data, setData] = useState({});
 
     useEffect(() => {
         setState({
             anchor: props.anchor,
             isCancelled: false
-        })
+        });
         setData({
             file: undefined
-        })
-    }, [props.anchor])
+        });
+    }, [props.anchor]);
 
     return (
         <Popover
@@ -118,8 +102,8 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = (props) 
                         onChange={(event) => {
                             setData({
                                 ...data,
-                                file: event.target.files![0]
-                            })
+                                file: event.target.files[0]
+                            });
                         }}
                     />
                     <label htmlFor="contained-button-file">
@@ -133,7 +117,7 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = (props) 
                         setState({
                             anchor: null,
                             isCancelled: true
-                        })
+                        });
                     }}
                     >
                         <CloseIcon />
@@ -142,8 +126,8 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = (props) 
                         setState({
                             anchor: null,
                             isCancelled: false
-                        })
-                        props.onSubmit(data, !state.isCancelled)
+                        });
+                        props.onSubmit(data, !state.isCancelled);
                     }}
                     >
                         <DoneIcon />
@@ -151,16 +135,16 @@ const UploadImagePopover: FunctionComponent<IUploadImagePopoverProps> = (props) 
                 </Grid>
             </Grid>
         </Popover>
-    )
-}
+    );
+};
 
-const AsyncImageUpload: FunctionComponent = () => {
-    const ref = useRef<TMUIRichTextEditorRef>(null)
-    const [anchor, setAnchor] = useState<HTMLElement | null>(null)
+const AsyncImageUpload = () => {
+    const ref = useRef(null);
+    const [anchor, setAnchor] = useState(null);
 
-    const handleFileUpload = (file: File) => {
-        ref.current?.insertAtomicBlockAsync("IMAGE", uploadImage(file), "Uploading now...")
-    }
+    const handleFileUpload = (file) => {
+        ref.current?.insertAtomicBlockAsync("IMAGE", uploadImage(file), "Uploading now...");
+    };
 
     return (
         <>
@@ -168,9 +152,9 @@ const AsyncImageUpload: FunctionComponent = () => {
                 anchor={anchor}
                 onSubmit={(data, insert) => {
                     if (insert && data.file) {
-                        handleFileUpload(data.file)
+                        handleFileUpload(data.file);
                     }
-                    setAnchor(null)
+                    setAnchor(null);
                 }}
             />
             <MUIRichTextEditor
@@ -183,22 +167,22 @@ const AsyncImageUpload: FunctionComponent = () => {
                         icon: <BackupIcon />,
                         type: "callback",
                         onClick: (_editorState, _name, anchor) => {
-                            setAnchor(anchor)
+                            setAnchor(anchor);
                         }
                     }
                 ]}
                 draftEditorProps={{
                     handleDroppedFiles: (_selectionState, files) => {
-                        if (files.length && (files[0] as File).name !== undefined) {
-                            handleFileUpload(files[0] as File)
-                            return "handled"
+                        if (files.length && (files[0]).name !== undefined) {
+                            handleFileUpload(files[0]);
+                            return "handled";
                         }
-                        return "not-handled"
+                        return "not-handled";
                     }
                 }}
             />
         </>
-    )
-}
+    );
+};
 
-export default AsyncImageUpload
+export default AsyncImageUpload;
